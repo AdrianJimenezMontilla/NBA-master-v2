@@ -34,7 +34,7 @@ export class PlantillaPage implements OnInit {
   }
 
   muestraDetalles(id: string) {
-    // busca en el array de objetos el titulo que recibe como parametro
+    
         this.index = this.jugadores.findIndex(j => j.nombre == id);
    
         this.jugador = this.nbaService.getJugador(id);

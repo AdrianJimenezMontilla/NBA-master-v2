@@ -8,7 +8,7 @@ import { Storage } from '@ionic/storage';
 })
 export class NbaService {
 
-  // array de objetos
+  
   jugadores: Jugador[];
   favoritos: Favorito[];
 

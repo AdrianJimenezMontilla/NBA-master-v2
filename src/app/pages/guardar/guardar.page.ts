@@ -53,7 +53,6 @@ export class GuardarPage implements OnInit {
    
   }
   muestraDetalles(id: string) {
-    // busca en el array de objetos el titulo que recibe como parametro
         this.index = this.jugadores.findIndex(j => j.nombre == id);
     
         this.jugador = this.nbaService.getJugador(id);
@@ -73,8 +72,8 @@ export class GuardarPage implements OnInit {
   async presentAlertConfirm(id: number, title: string) {
     console.log('alerta');
     const alert = await this.alertController.create({
-      header: 'Borrar tarea',
-      message: `¿Estás seguro que quieres borrar la tarea <strong> ${title}</strong>?`,
+      header: 'Borrar jugador',
+      message: `¿Estás seguro que quieres borrar el jugador <strong> ${title}</strong>?`,
       buttons: [
         {
           text: 'Cancelar',
