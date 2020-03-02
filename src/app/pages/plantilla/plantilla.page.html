@@ -1,5 +1,8 @@
 <ion-header id="header-equipos">
     <ion-toolbar>
+        <ion-buttons slot="end">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
       <ion-title id="titulo">
       <font color="white">Plantilla</font>
       </ion-title>
@@ -34,6 +37,10 @@
               <h2>
                 <ion-icon name="basketball"> </ion-icon> {{ j.posicion}}
               </h2>
+
+              <ion-button (click)="addJugador(j.nombre, j.edad, j.altura, j.peso)"> Añadir a favoritos
+
+              </ion-button>
               
 
             </div>

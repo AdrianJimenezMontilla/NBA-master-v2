@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Jugador } from 'src/app/model/jugador';
 import { NbaService } from 'src/app/services/nba.service';
-import { Favorito } from 'src/app/model/favorito';
 import { ModalController } from '@ionic/angular';
 import { SecondPage } from '../../modals/second/second.page';
 
@@ -14,16 +13,20 @@ import { SecondPage } from '../../modals/second/second.page';
 })
 export class PlantillaPage implements OnInit {
 
+  jugadorfb: Jugador = {nombre: '', edad: '', altura: '', peso: ''};
   jugadores: Jugador[] = [];
   jugador: Jugador;
   isClicked: boolean = false;
   index: number;
+  id: string;
 
   constructor(private nbaService: NbaService, private modalController: ModalController) { }
 
   ngOnInit() {
 
     this.jugadores = this.nbaService.getJugadores();
+    
+    
   }
 
   async openModal() {
@@ -33,6 +36,7 @@ export class PlantillaPage implements OnInit {
     return await modal.present();
   }
 
+
   muestraDetalles(id: string) {
     
         this.index = this.jugadores.findIndex(j => j.nombre == id);
@@ -40,6 +44,17 @@ export class PlantillaPage implements OnInit {
         this.jugador = this.nbaService.getJugador(id);
         console.log(this.jugador);
         this.isClicked = !this.isClicked;
+      }
+
+  
+   addJugador() {
+        this.nbaService.addJugador(this.jugador)
+        .catch(error => console.error(error));
+        
+          
+        
+        
+        
       }
 
   

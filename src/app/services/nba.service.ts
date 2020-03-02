@@ -1,21 +1,24 @@
-import { Injectable } from '@angular/core';
 import { Jugador } from '../model/jugador';
-import { Favorito } from '../model/favorito';
-import { Storage } from '@ionic/storage';
+import { Injectable } from '@angular/core';
+import { Observable, from } from 'rxjs';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NbaService {
 
-  
+  userId: string;
   jugadores: Jugador[];
-  favoritos: Favorito[];
 
-  constructor(private storage: Storage) {
+  constructor(private db: AngularFirestore,
+    private authService: AuthService, private alertController: AlertController) {
 
-    this.getFavoritos().then(
-      data => this.favoritos = data == null ?  [] : data
+    this.authService.getCurrentUser().subscribe(
+      data => this.userId = data.uid
     );
 
     this.jugadores = [
@@ -26,7 +29,7 @@ export class NbaService {
         "peso": "113kg",
         "posicion": "Base",
         "equipo": "Los Angeles Lakers",
-        "foto": "LeBron James.png"
+        "foto": "LeBrom James.png"
       },
       {
         "nombre": "Quinn Cook",
@@ -35,7 +38,7 @@ export class NbaService {
         "peso": "82kg",
         "posicion": "Base",
         "equipo": "Los Angeles Lakers",
-        "foto": "Quin.png"
+        "foto": "Quinn Cook.png"
       },
       {
         "nombre": "Rajon Rondo",
@@ -44,7 +47,7 @@ export class NbaService {
         "peso": "82kg",
         "posicion": "Base",
         "equipo": "Los Angeles Lakers",
-        "foto": "rajon.png"
+        "foto": "Rajon Rondo.png"
       },
       {
         "nombre": "Alex Caruso",
@@ -53,7 +56,7 @@ export class NbaService {
         "peso": "84kg",
         "posicion": "Escolta",
         "equipo": "Los Angeles Lakers",
-        "foto": "alex.png"
+        "foto": "Alex Caruso.png"
       },
       {
         "nombre": "Danny Green",
@@ -62,7 +65,7 @@ export class NbaService {
         "peso": "98kg",
         "posicion": "Alero",
         "equipo": "Los Angeles Lakers",
-        "foto": "danny.png"
+        "foto": "Danny Green.png"
       },
       {
         "nombre": "Kyle Kuzma",
@@ -71,7 +74,7 @@ export class NbaService {
         "peso": "100kg",
         "posicion": "Ala-Pivot",
         "equipo": "Los Angeles Lakers",
-        "foto": "kyle.png"
+        "foto": "Kyle Kuzma.png"
       },
       {
         "nombre": "Kyle Kuzma",
@@ -80,7 +83,7 @@ export class NbaService {
         "peso": "100kg",
         "posicion": "Ala-Pivot",
         "equipo": "Chicago Bulls",
-        "foto": "danny.png"
+        "foto": "Danny Green.png"
       }
       
 
@@ -88,31 +91,31 @@ export class NbaService {
     ]
   }
 
-  public getFavoritos(): Promise<Favorito[]> {
-    return this.storage.get('favoritos');
+  public addJugador(jugador: Jugador): Promise<DocumentReference> {
+    return this.db.collection<Jugador>('users/' + this.userId + '/jugadores').add(jugador);
   }
 
-  public getFavorito(id: number): Favorito {
-    return this.favoritos.filter(t => t.id == id)[0];
+  public getJugadoresfb(): Observable<Jugador[]> {
+    console.log('users/' + this.userId + '/jugadores');
+    return this.db.collection('users/' + this.userId + '/jugadores').snapshotChanges()
+      .pipe(
+        map(
+          snaps => snaps.map(
+            snap => <Jugador>{
+              jugadorId: snap.payload.doc.id,
+              ...snap.payload.doc.data() as Jugador
+            }
+          )
+        )
+      );
   }
 
-  public saveFavorito(t: Favorito): Promise<boolean> {
-    if (t.id == undefined) {
-
-      const maxId = this.favoritos.reduce((max, t) => t.id > max? t.id : max, -1);
-      const newFavorito = {id: maxId + 1, title: t.title};
-      this.favoritos.push(newFavorito);
-    } else {
- 
-      this.deleteFavorito(t.id);
-      this.favoritos.push(t);
-      this.favoritos.sort((t1, t2) => t1.id < t2.id ? -1 : 1);
-    }
-    return this.storage.set('favoritos', this.favoritos);
+  public deleteJugadorById(id: string): Promise<void> {
+    return this.db.collection('users/' + this.userId + '/jugadores').doc(id).delete();
   }
-  public deleteFavorito(id: number): Promise<boolean> {
-    this.favoritos = this.favoritos.filter(t => t.id != id);
-    return this.storage.set('favoritos', this.favoritos);
+
+  public getJugadorById(id: string): Observable<Jugador> {
+    return this.db.collection('users/' + this.userId + '/jugadores').doc<Jugador>(id).valueChanges();
   }
 
   getJugadores(): Jugador[] {
@@ -122,5 +125,27 @@ export class NbaService {
   getJugador(nombre: string) {
     return this.jugadores.filter(j => j.nombre == nombre)[0];
   }
-   }
+
+  async presentAlertConfirm(id: string, nombre: string) {
+    console.log('alerta');
+    const alert = await this.alertController.create({
+      header: 'Borrar jugador',
+      message: `¿Estás seguro que quieres borrar el jugador <strong> ${nombre}</strong>?`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            this.deleteJugadorById(id);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+}
 

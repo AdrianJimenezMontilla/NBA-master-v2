@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title id="titulo"><font color="white">Nuevo Usuario</font></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid id="cuerpo">
+    <ion-row>
+      <ion-col text-center>
+        <img src="../assets/unnamed.png">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-item>
+      <ion-label text-center position="floating" color="danger">Correo electrónico</ion-label>
+      <ion-input text-center clearInput class="text" [(ngModel)]="email">
+      </ion-input>
+      
+    </ion-item>
+    <ion-item>
+      <ion-label text-center position="floating" color="danger">Contraseña</ion-label>
+      <ion-input text-center class="text" [type]="passwordType" [(ngModel)]="password">
+      </ion-input>
+      <ion-icon name="eye" color="gray" (click)="togglePassword()"> </ion-icon>
+    </ion-item>
+        <ion-item>
+      <ion-label text-center position="floating" color="danger">Repita la contraseña</ion-label>
+      <ion-input text-center class="text" [type]="passwordType" [(ngModel)]="password2">
+      </ion-input>
+      <ion-icon name="eye" color="gray" (click)="togglePassword()"> </ion-icon>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-button *ngIf="password == password2"
+    expand="block"
+    class="text capitalize"
+    color="danger"
+    shape="round"
+    (click)="createUser()">
+    Aceptar
+  </ion-button>
+
+    <ion-item id="spinner">
+  <ion-spinner class="bubbles" *ngIf="spinner == true"></ion-spinner>
+  </ion-item>
+
+
+  <ion-button
+    expand="block"
+    class="text capitalize"
+    color="danger"
+    shape="round"
+    href="/login">
+    Cancelar
+  </ion-button>
+</ion-content>

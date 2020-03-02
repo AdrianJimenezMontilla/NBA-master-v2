@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title id="titulo"><font color="white">NBA Master 2.0</font></ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid id="cuerpo">
+    <ion-row>
+      <ion-col text-center>
+        
+            <img src="../assets/nbalogo.png">
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-item>
+      <ion-label text-center position="floating" color="danger">Correo electrónico</ion-label>
+      <ion-input text-center clearInput class="text" [(ngModel)]="email">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label text-center position="floating" color="danger">Contraseña</ion-label>
+      <ion-input text-center class="text" type="password" [(ngModel)]="password">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button
+    expand="block"
+    class="text capitalize"
+    color="danger"
+    shape="round"
+    (click)="login()">
+    Aceptar
+  </ion-button>
+
+  <ion-item id="spinner">
+  <ion-spinner class="bubbles" *ngIf="spinner == true"></ion-spinner>
+  </ion-item>
+  <br>
+  <div class="center">
+    <a class="text" href="/register">
+
+      <font color="white">Crear nueva cuenta</font>
+    </a>
+    <br>
+    <a class="text" href="/recover-password">
+
+      <font color="white">¿Has olvidado tu contraseña?</font>
+    </a>
+  </div>
+</ion-content>

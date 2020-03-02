@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Jugador } from 'src/app/model/jugador';
 import { NbaService } from 'src/app/services/nba.service';
-import { Favorito } from 'src/app/model/favorito';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-guardar',
@@ -13,8 +14,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class GuardarPage implements OnInit {
 
-  favorito: Favorito = {title: ''};
-  favoritos: Favorito[] = [];
+  jugadoresfb: Observable<Jugador[]>;
   jugadores: Jugador[] = [];
   jugador: Jugador;
   isClicked: boolean = false;
@@ -24,71 +24,21 @@ export class GuardarPage implements OnInit {
 
   constructor(private nbaService: NbaService,
     private route: ActivatedRoute, private router: Router, 
-    private alertController: AlertController) { }
+    private alertController: AlertController, private authService: AuthService) {
+
+      this.authService.getCurrentUser().subscribe(
+        () => this.jugadoresfb = this.nbaService.getJugadoresfb()
+      );
+
+     }
 
     
 
   ngOnInit() {
 
-
     this.jugadores = this.nbaService.getJugadores();
-        this.jugadores = this.nbaService.getJugadores();
 
-    
-    
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id != null) {
-      this.favorito = this.nbaService.getFavorito(+id);
-    }
   }
 
-  ionViewWillEnter() {
-    this.nbaService.getFavoritos().then(
-      data => this.favoritos = data
-    );
-  }
-
-  saveFavorito() {
-    this.nbaService.saveFavorito(this.favorito);
-   
-  }
-  muestraDetalles(id: string) {
-        this.index = this.jugadores.findIndex(j => j.nombre == id);
-    
-        this.jugador = this.nbaService.getJugador(id);
-        console.log(this.jugador);
-        this.isClicked = !this.isClicked;
-      }
-
-  deleteFavorito(id: number) {
-    this.nbaService.deleteFavorito(id).then(
-      () => this.nbaService.getFavoritos().then(
-        data => this.favoritos = data
-      )
-    );
-    
-  }
-
-  async presentAlertConfirm(id: number, title: string) {
-    console.log('alerta');
-    const alert = await this.alertController.create({
-      header: 'Borrar jugador',
-      message: `¿Estás seguro que quieres borrar el jugador <strong> ${title}</strong>?`,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary'
-        }, {
-          text: 'Aceptar',
-          handler: () => {
-            this.deleteFavorito(id);
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
 
 }
