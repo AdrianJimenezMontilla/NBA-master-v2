@@ -39,6 +39,8 @@ Entraremos en la plantilla de Los Angeles Lakers, nos saldra los jugadores que l
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a7.png)
 
+Si abrimos el menu y vamos a la sección de favoritos, veremos que tenemos a Lebron James agregado. Y tal cual lo hemos agregado, podemos eliminarlo.
+
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a8.png)
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a9.png)
