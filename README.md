@@ -51,12 +51,14 @@ Sin olvidar mencionar que todo lo que guardamos en la app se guardara en Firebas
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a10.png)
 
-Ahora iremos al perfil, donde haciendo clic en la foto de usuario por defecto podremos abrir la camara.
+Ahora iremos al perfil donde aparecera una foto por defecto.
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a11.png)
 
-Y capturar una buena foto de perfil.
+Haciendo clic en la imagen abriremos la camara.
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a12.png)
+
+Y capturar una buena foto de perfil. (Deslizando la foto de perfil podremos borrarla).
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a13.png)
