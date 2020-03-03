@@ -31,7 +31,11 @@ Y ya hemos entrado en la página principal, donde nos aparecerán todas las plan
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a5.png)
 
+Haciendo clic en el menu de hamburguesa se nos desplegara un menu con distintas opciones.
+
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a6.png)
+
+Entraremos en la plantilla de Los Angeles Lakers, nos saldra los jugadores que la componen, y haciendo clic en su foto apareceran sus atributos, con un botón para agregarlo a tu lista de favoritos.
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a7.png)
 
