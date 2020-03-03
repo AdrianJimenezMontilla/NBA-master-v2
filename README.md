@@ -65,5 +65,5 @@ Y capturar una buena foto de perfil.
 
 (Deslizando la foto de perfil podremos borrarla).
 
-![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a13.png)
+![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a14.png)
 
