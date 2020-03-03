@@ -59,6 +59,11 @@ Haciendo clic en la imagen abriremos la camara.
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a12.png)
 
-Y capturar una buena foto de perfil. (Deslizando la foto de perfil podremos borrarla).
+Y capturar una buena foto de perfil. 
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a13.png)
+
+(Deslizando la foto de perfil podremos borrarla).
+
+![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a13.png)
+
