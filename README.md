@@ -18,8 +18,12 @@ En esta página podremos recuperar la contraseña, introduciendo un correo que e
 
 En esta página registraremos nuestra cuenta de usuario, el botón de registro no aparecerá si los dos campos de contraseña no son iguales. Haciendo clic en el icono del "ojo" al lado del campo contraseña revelará que contraseña estamos escribiendo.
 
+Cuando logueemos, aparecerá una "animación" de cargando, que es un spinner.
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a3.png)
+
+
+Y ya hemos entrado en la página principal, donde nos aparecerán todas las plantillas de la NBA.
 
 ![Aquí la descripción de la imagen por si no carga](https://github.com/AdrianJimenezMontilla/NBA-master-v2/blob/master/imagenes/a4.png)
 
